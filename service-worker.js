@@ -2,8 +2,8 @@
 
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
-  var title = 'メッセージのタイトル';
-  var body = 'プッシュメッセージを受信';
+  var title = 'WEBブラウザプッシュとは';
+  var body = 'ブラウザへメッセージを送信できます';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
   event.waitUntil(
