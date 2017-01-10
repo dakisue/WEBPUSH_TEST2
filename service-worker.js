@@ -5,7 +5,7 @@ self.addEventListener('push', function(event) {
 
   var title = 'メッセージのタイトル';
   var body = 'プッシュメッセージを受信';
-  var icon = '/demo/push/non-data/images/icon-192x192.png';
+  var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
 
   event.waitUntil(
