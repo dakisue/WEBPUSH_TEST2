@@ -2,12 +2,10 @@
 
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
-
-  var title = 'ブラウザプッシュとは';
-  var body = 'ブラウザからメッセージを送れます';
+  var title = 'メッセージのタイトル';
+  var body = 'プッシュメッセージを受信';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
-
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
@@ -17,10 +15,9 @@ self.addEventListener('push', function(event) {
   );
 });
 
-/*self.addEventListener('notificationclick', function(event) {
+self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
   event.notification.close();
-
   event.waitUntil(clients.matchAll({
     type: 'window'
   }).then(function(clientList) {
@@ -34,21 +31,4 @@ self.addEventListener('push', function(event) {
       return clients.openWindow('/');
     }
   }));
-});*/
-
-self.addEventListener('notificationclick', function(event) {
-  event.notification.close()
-
-  var url = "/"
-  if (event.notification.data.url) {
-    url = event.notification.data.url
-  }
-
-  event.waitUntil(
-    clients.matchAll({type: 'window'}).then(function() {
-      if(clients.openWindow) {
-        return clients.openWindow(url)
-      }
-    })
-  )
-})
+});
