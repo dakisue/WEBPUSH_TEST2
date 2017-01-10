@@ -6,7 +6,6 @@ self.addEventListener('push', function(event) {
   var body = 'ブラウザへメッセージを送信できます';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
-  alert(title);
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
