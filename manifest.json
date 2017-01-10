@@ -3,11 +3,11 @@
   "short_name": "Push Demo",
   "icons": [
     {
-      "src": "/demo/push/non-data/images/icon-192x192.png",
+      "src": "mori.png",
       "sizes": "192x192"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "http://www.morisawa.co.jp/",
   "display": "standalone",
   "gcm_sender_id": "65782343874"
 }
