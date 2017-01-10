@@ -7,7 +7,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://dakisue.github.io/WEBPUSH_TEST2/",
   "display": "standalone",
   "gcm_sender_id": "65782343874"
 }
