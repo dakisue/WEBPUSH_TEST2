@@ -19,7 +19,7 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener("notificationclick", function(event) {
   event.notification.close();
-  clients.openWindow(event.notification.link_to);
+  clients.openWindow(event.notification.link_url);
 }, false);
 
 /*self.addEventListener('notificationclick', function(event) {
@@ -34,7 +34,6 @@ self.addEventListener("notificationclick", function(event) {
         return client.focus();
       }
     }
-    alert(clients.openWindow);
     if (clients.openWindow) {
       return clients.openWindow('/');
     }
