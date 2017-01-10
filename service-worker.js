@@ -6,12 +6,13 @@ self.addEventListener('push', function(event) {
   var body = 'ブラウザへメッセージを送信できます';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
-  ver link_url = 'http://www.morisawa.co.jp/'
+  //ver url = 'http://www.morisawa.co.jp/'
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
       icon: icon,
-      tag: tag
+      tag: tag,
+      //url: url
     })
   );
 });
