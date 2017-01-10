@@ -6,16 +6,23 @@ self.addEventListener('push', function(event) {
   var body = 'ブラウザへメッセージを送信できます';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
+  ver link_url = 'http://www.morisawa.co.jp/'
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
       icon: icon,
       tag: tag
+      link_url: link_url 
     })
   );
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener("notificationclick", function(event) {
+  event.notification.close();
+  clients.openWindow(event.notification.link_to);
+}, false);
+
+/*self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
   event.notification.close();
   event.waitUntil(clients.matchAll({
@@ -32,4 +39,4 @@ self.addEventListener('notificationclick', function(event) {
       return clients.openWindow('/');
     }
   }));
-});
+});*/
