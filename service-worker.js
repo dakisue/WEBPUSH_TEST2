@@ -17,7 +17,7 @@ self.addEventListener('push', function(event) {
   );
 });
 
-self.addEventListener('notificationclick', function(event) {
+/*self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
   event.notification.close();
 
@@ -34,4 +34,21 @@ self.addEventListener('notificationclick', function(event) {
       return clients.openWindow('/');
     }
   }));
-});
+});*/
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close()
+
+  var url = "/"
+  if (event.notification.data.url) {
+    url = event.notification.data.url
+  }
+
+  event.waitUntil(
+    clients.matchAll({type: 'window'}).then(function() {
+      if(clients.openWindow) {
+        return clients.openWindow(url)
+      }
+    })
+  )
+})
