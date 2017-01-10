@@ -17,7 +17,12 @@ self.addEventListener('push', function(event) {
   );
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener("notificationclick", function(event) {
+  event.notification.close();
+  clients.openWindow("/");
+}, false);
+
+/* self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
   event.notification.close();
 
@@ -34,4 +39,4 @@ self.addEventListener('notificationclick', function(event) {
       return clients.openWindow('/');
     }
   }));
-});
+});*/
