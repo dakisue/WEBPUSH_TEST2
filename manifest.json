@@ -7,7 +7,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "http://www.morisawa.co.jp/",
+  "start_url": "/index.html",
   "display": "standalone",
   "gcm_sender_id": "65782343874"
 }
