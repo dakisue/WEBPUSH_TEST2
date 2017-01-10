@@ -27,6 +27,7 @@ self.addEventListener('notificationclick', function(event) {
         return client.focus();
       }
     }
+    alert(clients.openWindow);
     if (clients.openWindow) {
       return clients.openWindow('/');
     }
