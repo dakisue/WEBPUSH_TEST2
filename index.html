@@ -137,7 +137,7 @@
 
       var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
         '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
-        ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]}"';
+        ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"],\\"data\\":{\\"message/\":\\"Hello\\"}}"}"';
 
       var frame = document.getElementById("command");
       frame.innerText = curlCommand;
