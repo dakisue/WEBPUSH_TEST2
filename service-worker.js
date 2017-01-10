@@ -1,6 +1,25 @@
 'use strict';
 
-self.addEventListener('push', function(event) {
+self.addEventListener("push", function(event) {
+  event.waitUntil(
+    self.registration.showNotification("Push通知タイトル", {
+      icon: "/icon.png",
+      body: "Push通知本文",
+      tag: "push-test",
+      actions: [{
+        action: "act1",
+        title: "ボタン１"
+      }, {
+        action: "act2",
+        title: "ボタン２"
+      }],
+      vibrate: [200, 100, 200, 100, 200, 100, 200]
+    })
+  )
+})
+
+
+/*self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
 
   var title = 'メッセージのタイトル';
@@ -15,14 +34,14 @@ self.addEventListener('push', function(event) {
       tag: tag
     })
   );
-});
+});*/
 
 /*self.addEventListener("notificationclick", function(event) {
   event.notification.close();
   clients.openWindow("/");
 }, false);*/
 
- self.addEventListener('notificationclick', function(event) {
+/* self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event.notification.tag);
   event.notification.close();
 
@@ -40,3 +59,4 @@ self.addEventListener('push', function(event) {
     }
   }));
 });
+*/
