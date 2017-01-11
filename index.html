@@ -9,17 +9,22 @@
 
     //var API_KEY = 'AIzaSyA2qMhkexxdJO3HM8fxuFXlVj_VSb_fguc';
     var API_KEY = 'AIzaSyBZS5BZXkk9UXXfp8IRIiBJ_cWM_UOJV24';
+    //Firebase サーバーキーだとうまくいかない？旧GCMキーで設定。
     //var API_KEY = 'AAAAD1Du6MI:APA91bEM025KSJSmk584bUXAGLOMW_Jv5uMTsr9z38K58GkAF145LdM3EzxI2aadAPuMhY6iz2FyU7eMxK9qtbEXpT3f6aMB3hFjWFsPVc-mz-vbvBLIuK2GGcdc91oX8nflOr_pDzeQ9AqlOQkFjZFWsr7IFJn6YA';
     var GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send';
-
+    
+    // ページロードイベント
+    // onLoad()関数 サービスワーカーを登録
+    //
     function onLoad() {
       if ('serviceWorker' in navigator) {
+        //サービスワーカー登録
         navigator.serviceWorker.register('./service-worker.js').then(initialiseState);
       } else {
         window.Demo.debug.log('Service workers aren\'t supported in this browser.');
       }
     }
-    
+    //initialiseState() 関数　パーミッションチェックおよび動作対応環境確認
     function initialiseState() {
       if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
         window.Demo.debug.log('Notifications aren\'t supported.');
@@ -35,25 +40,29 @@
         window.Demo.debug.log('Push messaging isn\'t supported.');
         return;
       }
-
+      //サービスワーカー待機状態へ移行
       navigator.serviceWorker.ready.then(ServiceWorkerRegistInit);
     }
-
+    //subscriptionオブジェクトを取得
     function ServiceWorkerRegistInit(serviceWorkerRegistration) {
       serviceWorkerRegistration.pushManager.getSubscription().then(SubscriptionProcInit);
-    }
-
+    }　　
+    
+  　//引数に取得したsubscriptionオブジェクトの付与
+    //subscriptionオブジェクトがnullの場合は購読状態にしない
     function SubscriptionProcInit(subscription) {
       if (!subscription) {
         return;
       }
-
+      //エンドポイントやAPIキーなどをサーバーに送信
+      //今回は画面に表示のみ
       sendSubscriptionToServer(subscription);
       /* Push が利用可能 */
     }
-
-
-    /* Subscribe */
+　　
+　  // プッシュ通知の購読　ボタン押下
+    /* Subscribeボタン押下時 */
+    // 
     function SubscribePushNotification() {
       navigator.serviceWorker.ready.then(ServiceWorkerRegist);
     }
@@ -71,6 +80,7 @@
       return sendSubscriptionToServer(subscription);
     }
 
+    /*サーバーに各情報を送信するクラス　今回は画面表示のため*/
     function sendSubscriptionToServer(subscription) {
       console.log('TODO: Implement sendSubscriptionToServer()');
       var mergedEndpoint = endpointWorkaround(subscription);
@@ -97,9 +107,8 @@
       return mergedEndpoint;
     }
 
-
-    /* UnSubscribe */
-
+　  // プッシュ通知の購読解除　ボタン押下
+    /* UnSubscribeボタン押下時 */
     function UnSubscribePushNotification() {
       navigator.serviceWorker.ready.then(ServiceWorkerUnregist);
     }
@@ -122,8 +131,6 @@
       /* UnSubscription 処理完了後の処理を記述 */
     }
 
-
-
     /* 情報の画面表示 */
     function showCurlCommand(mergedEndpoint) {
       if (mergedEndpoint.indexOf(GCM_ENDPOINT) !== 0) {
@@ -138,7 +145,6 @@
       var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
         '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
         ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]"}"';
-        //' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"],\\"data\\":{\\"message\\":\\"Hello\\"}"}"';
 
       var frame = document.getElementById("command");
       frame.innerText = curlCommand;
