@@ -157,14 +157,16 @@
         '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
         ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]"}"';
       
+      /*説明用のキー情報教示  */
       var frameinfo = document.getElementById("push_info");
-      frameinfo.innerHTML = API_KEYCommandTxt + + "<br/>";
+      frameinfo.innerHTML = API_KEYCommandTxt + "<br/>";
       frameinfo.innerHTML += API_KEY + "<br/>";
       frameinfo.innerHTML += GCM_ENDPOINTCommandTxt + "<br/>";
       frameinfo.innerHTML += GCM_ENDPOINT + "<br/>";
       frameinfo.innerHTML += subscriptionIdCommandTxt  + "<br/>";
       frameinfo.innerHTML += subscriptionId ;
-
+      
+      /*cUrlコマンド出力*/
       var frame = document.getElementById("command");
       //frame.innerText = curlCommand;
       frame.innerHTML = curlCommandTxt + "<br/>";
