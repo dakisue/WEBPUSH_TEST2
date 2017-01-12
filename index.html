@@ -14,9 +14,9 @@
     var GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send';
     //テキスト変数
     var curlCommandTxt = '下記をcURLにて実行してください';
-    //var API_KEYCommandTxt = 'Firebase（プッシュサーバー）のサーバーキー';
-    //var GCM_ENDPOINTCommandTxt = 'Firebase（プッシュサーバー）のエンドポイント';
-    //var subscriptionIdCommandTxt = 'この端末のID';
+    var API_KEYCommandTxt = 'Firebase（プッシュサーバー）のサーバーキー';
+    var GCM_ENDPOINTCommandTxt = 'Firebase（プッシュサーバー）のエンドポイント';
+    var subscriptionIdCommandTxt = 'この端末のID';
     
     // ページロードイベント
     // onLoad()関数 サービスワーカーを登録
@@ -157,7 +157,7 @@
         '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
         ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]"}"';
       
-      //var frameinfo = document.getElementById("pusu_info");
+      var frameinfo = document.getElementById("pusu_info");
       //frameinfo.innerHTML = API_KEYCommandTxt + ':' + API_KEY + "<br/>";
       //frameinfo.innerHTML += GCM_ENDPOINTCommandTxt + ':' + GCM_ENDPOINT + "<br/>";
       //frameinfo.innerHTML += subscriptionIdCommandTxt + ':' + subscriptionId ;
