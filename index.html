@@ -12,6 +12,11 @@
     //Firebase サーバーキーだとうまくいかない？旧GCMキーで設定。
     //var API_KEY = 'AAAAD1Du6MI:APA91bEM025KSJSmk584bUXAGLOMW_Jv5uMTsr9z38K58GkAF145LdM3EzxI2aadAPuMhY6iz2FyU7eMxK9qtbEXpT3f6aMB3hFjWFsPVc-mz-vbvBLIuK2GGcdc91oX8nflOr_pDzeQ9AqlOQkFjZFWsr7IFJn6YA';
     var GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send';
+    //テキスト変数
+    var curlCommandTxt = "下記をcURLにて実行してください"
+    var API_KEYCommandTxt = "Firebase（プッシュサーバー）のサーバーキー"
+    var GCM_ENDPOINTCommandTxt = "Firebase（プッシュサーバー）のエンドポイント"
+    var subscriptionIdCommandTxt = "この端末のID"
     
     // ページロードイベント
     // onLoad()関数 サービスワーカーを登録
@@ -130,7 +135,13 @@
     function UnSubscriptionComplete() {
       /* UnSubscription 処理完了後の処理を記述 */
     }
+    
+    /* デモ用情報の表示処理の追加 */
+    function showInfoCommand() {
+      
+    }
 
+    
     /* 情報の画面表示 */
     function showCurlCommand(mergedEndpoint) {
       if (mergedEndpoint.indexOf(GCM_ENDPOINT) !== 0) {
@@ -145,20 +156,30 @@
       var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
         '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
         ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]"}"';
+      
+      var frame = document.getElementById("pusu_info");
+      
+      frame.innerHTML = API_KEYCommandTxt + ":" + API_KEY + "<br/>";
+      frame.innerHTML += GCM_ENDPOINTCommandTxt + ":" + GCM_ENDPOINT + "<br/>";
+      frame.innerHTML += subscriptionIdCommandTxt + ":" + subscriptionId  + "<br/>";
 
       var frame = document.getElementById("command");
-      frame.innerText = curlCommand;
+      //frame.innerText = curlCommand;
+      frame.innerHTML = curlCommandTxt + "<br/>";
+      frame.innerHTML += curlCommand;
     }
-
+   
     function showSubscriptionInfo(subscription) {
       console.log(subscription);
       console.log(subscription.getKey('p256dh'));
       console.log(subscription.getKey('auth'));
 
+      /* 暗号化情報は今回不要のためコメントアウト
       var frame = document.getElementById("info");
       frame.innerHTML = "Endpoint : " + subscription.endpoint + "<br/>";
       frame.innerHTML += "p256dh Key : " + btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) + "<br/>";
       frame.innerHTML += "Authentication Secret : " + btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) + "<br/>"; 
+      */
     }
   </script>
 </head>
@@ -166,6 +187,8 @@
   <p>Demo Page</p>
   <a href="#" onclick="SubscribePushNotification();">プッシュ通知の購読</a><br />
   <a href="#" onclick="UnSubscribePushNotification();">プッシュ通知の購読解除</a><br />
+  <hr />
+  <p id="push_info"></p>  
   <hr />
   <p id="command"></p>
   <hr />
