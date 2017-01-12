@@ -20,6 +20,10 @@ self.addEventListener('push', function(event) {
       body: body,
       icon: icon,
       tag: tag
+      //,actions: [
+      //         {action: 'action1', title: "ボタン１"},
+      //         {action: 'action2', title: "ボタン２"}
+      //         ] 
     })
   );
 });
@@ -41,3 +45,15 @@ self.addEventListener('notificationclick', function(event) {
     }
   }));
 });
+
+/*if (typeof window === "undefined") {
+    self.addEventListener('notificationclick', function(event) {
+        event.notification.close();
+
+        if (event.action === 'action1') {
+            clients.openWindow("/action1");
+        } else {
+            clients.openWindow("/");
+        }
+    }, false);
+}*/
