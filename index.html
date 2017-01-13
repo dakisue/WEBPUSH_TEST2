@@ -179,12 +179,10 @@
       console.log(subscription.getKey('auth'));
       
       //暗号化情報は今回不要のためコメントアウト
-      /* 
       var frame = document.getElementById("info");
       frame.innerHTML = "Endpoint : " + subscription.endpoint + "<br/>";
       frame.innerHTML += "p256dh Key : " + btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) + "<br/>";
       frame.innerHTML += "Authentication Secret : " + btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) + "<br/>"; 
-      */
     }
   </script>
 </head>
