@@ -12,7 +12,8 @@ self.addEventListener('push', function(event) {
   if (event.data != null) {
       var textdata = event.data.text();
       console.log('receive text: ', textdata);
-      body = body + ":" + textdata;
+      //body = body + ":" + textdata;
+      body = textdata;
   }
   
   event.waitUntil(
