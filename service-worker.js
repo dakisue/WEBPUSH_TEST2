@@ -2,8 +2,8 @@
 
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
-  var title = '１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０';
-  var body = '１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０';
+  var title = '謹賀新年';
+  var body = 'あけましておめでとうございます';
   var icon = 'mori.png';
   var tag = 'simple-push-demo-notification-tag';
   
